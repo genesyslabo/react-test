@@ -1,0 +1,32 @@
+.mint-token-form {
+    display: flex;
+    align-items: center;
+}
+
+.mint-token-input,
+.mint-token-button {
+    font-size: 1.2rem;
+    padding: 10px;
+    border: 2px solid #61dafb;
+    background-color: transparent;
+    color: #61dafb;
+    border-radius: 5px;
+    outline: none;
+}
+
+.mint-token-input {
+    flex: 1;
+    margin-right: 10px;
+    max-width: 250%;
+    /* Set the max-width to 250% */
+}
+
+.mint-token-button {
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mint-token-button:hover {
+    background-color: #61dafb;
+    color: white;
+}

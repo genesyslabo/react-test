@@ -1,0 +1,16 @@
+.connect-wallet-button {
+    background-color: transparent;
+    border: 2px solid #61dafb;
+    color: #61dafb;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.connect-wallet-button:hover {
+    background-color: #61dafb;
+    color: white;
+}
