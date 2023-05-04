@@ -1,38 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './ConnectWalletMobile.css';
-import { Web3Provider } from '@ethersproject/providers';
 import { SignerContext } from './SignerContext';
 
 const ConnectWalletMobile = () => {
-  const [provider, setProvider] = useState(null);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
-  const { setAccount, setSigner } = useContext(SignerContext);
+  const { setAccount } = useContext(SignerContext);
 
   useEffect(() => {
-    const initEthersProvider = async () => {
-      if (typeof window.ethereum !== 'undefined') {
-        window.ethereum.on('accountsChanged', (accounts) => {
-          setResult(accounts[0]);
-          setAccount(accounts[0]);
-        });
-
-        setProvider(new Web3Provider(window.ethereum));
-
-        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-        if (accounts.length > 0) {
-          setResult(accounts[0]);
-          setAccount(accounts[0]);
-        }
-      }
-    };
-    initEthersProvider();
+    if (typeof window.ethereum !== 'undefined') {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        setResult(accounts[0]);
+        setAccount(accounts[0]);
+      });
+    }
   }, [setAccount]);
 
   const connectWallet = async () => {
     try {
-      if (!provider) return;
-
       const metamaskDeepLink = 'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
 
       if (navigator.userAgent.includes('iPhone')) {
@@ -51,7 +36,6 @@ const ConnectWalletMobile = () => {
 
   return (
     <div>
-      {!provider && <p>Please install an ethers extension like MetaMask</p>}
       {error && <p>{error}</p>}
       <p>{result ? `Connected to ${result}` : 'Connect your wallet (mobile)'}</p>
       {!result && (
