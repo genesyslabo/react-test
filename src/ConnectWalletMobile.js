@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./ConnectWallet.css";
+import "./ConnectWalletMobile.css";
 import { Web3Provider } from "@ethersproject/providers";
 import { SignerContext } from "./SignerContext";
 
-const ConnectWallet = () => {
+const ConnectWalletMobile = () => {
     const [provider, setProvider] = useState(null);
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
@@ -36,7 +36,7 @@ const ConnectWallet = () => {
         <div>
             {!provider && <p>Please install an ethers extension like MetaMask</p>}
             {error && <p>{error}</p>}
-            <p>{result ? `Connect to ${result}` : "Connect your wallet"}</p>
+            <p>{result ? `Connect to ${result}` : "Connect your wallet (mobile)"}</p>
             {!result && (
                 <button
                     className="connect-wallet-button"
@@ -49,4 +49,4 @@ const ConnectWallet = () => {
     );
 };
 
-export default ConnectWallet;
+export default ConnectWalletMobile;
