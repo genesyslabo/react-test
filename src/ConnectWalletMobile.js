@@ -18,15 +18,26 @@ const ConnectWalletMobile = () => {
 
   const connectWallet = async () => {
     try {
-      const metamaskDeepLink = 'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
-
-      if (navigator.userAgent.includes('iPhone')) {
-        window.location.assign(metamaskDeepLink);
-      } else if (navigator.userAgent.includes('Android')) {
-        const intentUri = 'intent://genesyslabo.github.io/react-test/#Intent;scheme=metamask;package=io.metamask;end';
-        window.location.assign(intentUri);
+      if (window.ethereum && window.ethereum.isMetaMask) {
+        // Connect to wallet directly if in MetaMask mobile browser
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        setResult(accounts[0]);
+        setAccount(accounts[0]);
       } else {
-        window.location.assign(metamaskDeepLink);
+        const metamaskDeepLink =
+          'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
+
+        if (navigator.userAgent.includes('iPhone')) {
+          window.location.assign(metamaskDeepLink);
+        } else if (navigator.userAgent.includes('Android')) {
+          const intentUri =
+            'intent://genesyslabo.github.io/react-test/#Intent;scheme=metamask;package=io.metamask;end';
+          window.location.assign(intentUri);
+        } else {
+          window.location.assign(metamaskDeepLink);
+        }
       }
     } catch (error) {
       console.error(error);
