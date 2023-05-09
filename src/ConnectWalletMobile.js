@@ -8,18 +8,18 @@ const ConnectWalletMobile = () => {
   const { setAccount } = useContext(SignerContext);
 
   useEffect(() => {
-    const storedAccount = localStorage.getItem('connectedAccount');
-    if (storedAccount) {
-      setResult(storedAccount);
-      setAccount(storedAccount);
-      localStorage.removeItem('connectedAccount');
+    const urlParams = new URLSearchParams(window.location.search);
+    const accountFromUrl = urlParams.get('account');
+
+    if (accountFromUrl) {
+      setResult(accountFromUrl);
+      setAccount(accountFromUrl);
     }
 
     if (typeof window.ethereum !== 'undefined') {
       window.ethereum.on('accountsChanged', (accounts) => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
-        localStorage.setItem('connectedAccount', accounts[0]);
       });
     }
   }, [setAccount]);
@@ -33,7 +33,10 @@ const ConnectWalletMobile = () => {
         });
         setResult(accounts[0]);
         setAccount(accounts[0]);
-        localStorage.setItem('connectedAccount', accounts[0]);
+
+        const currentUrl = new URL(window.location);
+        currentUrl.searchParams.set('account', accounts[0]);
+        window.location.assign(currentUrl.toString());
       } else {
         const metamaskDeepLink = 'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
 
