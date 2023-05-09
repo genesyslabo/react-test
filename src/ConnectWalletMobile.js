@@ -8,20 +8,18 @@ const ConnectWalletMobile = () => {
   const { setAccount } = useContext(SignerContext);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const accountFromUrl = urlParams.get('account');
+    const handleMessage = (event) => {
+      if (event.data.type === 'ACCOUNT_CONNECTED') {
+        setResult(event.data.account);
+        setAccount(event.data.account);
+      }
+    };
 
-    if (accountFromUrl) {
-      setResult(accountFromUrl);
-      setAccount(accountFromUrl);
-    }
+    window.addEventListener('message', handleMessage);
 
-    if (typeof window.ethereum !== 'undefined') {
-      window.ethereum.on('accountsChanged', (accounts) => {
-        setResult(accounts[0]);
-        setAccount(accounts[0]);
-      });
-    }
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
   }, [setAccount]);
 
   const connectWallet = async () => {
@@ -33,20 +31,16 @@ const ConnectWalletMobile = () => {
         });
         setResult(accounts[0]);
         setAccount(accounts[0]);
-
-        const currentUrl = new URL(window.location);
-        currentUrl.searchParams.set('account', accounts[0]);
-        window.location.assign(currentUrl.toString());
       } else {
-        const metamaskDeepLink = 'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
+        const connectorUrl = "https://genesyslabo.github.io/metamask-connector.html";
 
         if (navigator.userAgent.includes('iPhone')) {
-          window.location.assign(metamaskDeepLink);
+          window.location.assign(connectorUrl);
         } else if (navigator.userAgent.includes('Android')) {
-          const intentUri = 'intent://genesyslabo.github.io/react-test/#Intent;scheme=metamask;package=io.metamask;end';
+          const intentUri = `intent://${connectorUrl}#Intent;scheme=http;package=io.metamask;end`;
           window.location.assign(intentUri);
         } else {
-          window.location.assign(metamaskDeepLink);
+          window.open(connectorUrl, '_blank');
         }
       }
     } catch (error) {
