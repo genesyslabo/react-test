@@ -32,7 +32,7 @@ const ConnectWalletMobile = () => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
       } else {
-        const connectorUrl = "https://genesyslabo.github.io/metamask-connector.html";
+        const connectorUrl = "https://genesyslabo.github.io/react-test/metamask-connector.html";
 
         if (navigator.userAgent.includes('iPhone')) {
           window.location.assign(connectorUrl);
