@@ -8,11 +8,18 @@ const ConnectWalletMobile = () => {
   const { setAccount } = useContext(SignerContext);
 
   useEffect(() => {
+    const storedAccount = localStorage.getItem('connectedAccount');
+    if (storedAccount) {
+      setResult(storedAccount);
+      setAccount(storedAccount);
+      localStorage.removeItem('connectedAccount');
+    }
+
     if (typeof window.ethereum !== 'undefined') {
       window.ethereum.on('accountsChanged', (accounts) => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
-        redirectToOriginalBrowser(accounts[0]);
+        localStorage.setItem('connectedAccount', accounts[0]);
       });
     }
   }, [setAccount]);
@@ -26,6 +33,7 @@ const ConnectWalletMobile = () => {
         });
         setResult(accounts[0]);
         setAccount(accounts[0]);
+        localStorage.setItem('connectedAccount', accounts[0]);
       } else {
         const metamaskDeepLink = 'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
 
@@ -42,11 +50,6 @@ const ConnectWalletMobile = () => {
       console.error(error);
       setError('Failed to connect to your wallet.');
     }
-  };
-
-  const redirectToOriginalBrowser = (account) => {
-    const deepLinkUrl = `https://genesyslabo.github.io/react-test?account=${account}`;
-    window.location.replace(deepLinkUrl);
   };
 
   return (
