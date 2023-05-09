@@ -12,6 +12,7 @@ const ConnectWalletMobile = () => {
       window.ethereum.on('accountsChanged', (accounts) => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
+        redirectToOriginalBrowser(accounts[0]);
       });
     }
   }, [setAccount]);
@@ -26,14 +27,12 @@ const ConnectWalletMobile = () => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
       } else {
-        const metamaskDeepLink =
-          'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
+        const metamaskDeepLink = 'https://metamask.app.link/dapp/genesyslabo.github.io/react-test/';
 
         if (navigator.userAgent.includes('iPhone')) {
           window.location.assign(metamaskDeepLink);
         } else if (navigator.userAgent.includes('Android')) {
-          const intentUri =
-            'intent://genesyslabo.github.io/react-test/#Intent;scheme=metamask;package=io.metamask;end';
+          const intentUri = 'intent://genesyslabo.github.io/react-test/#Intent;scheme=metamask;package=io.metamask;end';
           window.location.assign(intentUri);
         } else {
           window.location.assign(metamaskDeepLink);
@@ -43,6 +42,11 @@ const ConnectWalletMobile = () => {
       console.error(error);
       setError('Failed to connect to your wallet.');
     }
+  };
+
+  const redirectToOriginalBrowser = (account) => {
+    const deepLinkUrl = `https://genesyslabo.github.io/react-test?account=${account}`;
+    window.location.replace(deepLinkUrl);
   };
 
   return (
