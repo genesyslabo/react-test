@@ -12,7 +12,7 @@ const ConnectWalletMobile = () => {
       window.ethereum.on('accountsChanged', (accounts) => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
-        redirectToOriginalBrowser();
+        redirectToOriginalBrowser(accounts[0]);
       });
     }
   }, [setAccount]);
@@ -46,8 +46,8 @@ const ConnectWalletMobile = () => {
     }
   };
 
-  const redirectToOriginalBrowser = () => {
-    const deepLinkUrl = 'yourapp://yourwebsite.com/path';
+  const redirectToOriginalBrowser = (account) => {
+    const deepLinkUrl = `https://genesyslabo.github.io/react-test?account=${account}`;
     window.location.replace(deepLinkUrl);
   };
 
