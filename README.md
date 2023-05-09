@@ -12,7 +12,11 @@ The contract is based on the ERC-721 standard, provides the mintNFT function, an
 
 Use Context to store signer and account for other components to call.
 
-### ConnectWallet
+### ConnectWallet by Web
+
+Use Web3Provider to connect to the user wallet to obtain signer and account.
+
+### ConnectWallet by Mobile
 
 Use Web3Provider to connect to the user wallet to obtain signer and account.
 
