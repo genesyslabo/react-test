@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,8 @@
           });
 
           // Send account info back to the original browser
-          window.opener.postMessage({
+          const targetWindow = window.opener || window.parent;
+          targetWindow.postMessage({
             type: 'ACCOUNT_CONNECTED',
             account: accounts[0]
           }, '*');
@@ -29,6 +31,8 @@
     connectWallet();
   </script>
 </head>
+
 <body>
 </body>
+
 </html>
