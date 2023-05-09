@@ -12,6 +12,7 @@ const ConnectWalletMobile = () => {
       window.ethereum.on('accountsChanged', (accounts) => {
         setResult(accounts[0]);
         setAccount(accounts[0]);
+        redirectToOriginalBrowser();
       });
     }
   }, [setAccount]);
@@ -43,6 +44,11 @@ const ConnectWalletMobile = () => {
       console.error(error);
       setError('Failed to connect to your wallet.');
     }
+  };
+
+  const redirectToOriginalBrowser = () => {
+    const deepLinkUrl = 'yourapp://yourwebsite.com/path';
+    window.location.replace(deepLinkUrl);
   };
 
   return (
