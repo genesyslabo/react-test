@@ -6,7 +6,7 @@ source /etc/profile
 # Please change these parameters according to your real env.
 ###################################
 # set Java Home: Remember that dolphin only supports JDK8!
-JAVA_HOME=/home/ec2-user/zulu17.42.21-ca-crac-jdk17.0.7-linux_x64
+JAVA_HOME=/usr/lib/jvm/jdk-17
 # check JAVA_HOME
 if [ x"$JAVA_HOME" == x ]; then
     echo "==================== Failed! ====================="
