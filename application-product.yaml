@@ -1,0 +1,62 @@
+spring:
+  data:
+    redis:
+      repositories:
+        enabled: true
+      client-type: lettuce
+      host: "localhost"
+      database: 5
+      port: 6379
+      lettuce:
+        pool:
+          enabled: true
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    dynamic:
+      datasource:
+        master:
+          url: "jdbc:mysql://database-1.cho1fsscfqyg.us-east-2.rds.amazonaws.com:3306/v2?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false"
+          username: "admin"
+          password: "z2xNENgk729EU3QmXxerxxp9hyooJxdi2748"
+
+      primary: master
+jwt:
+  privateKey: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCqup4isI3NOqrHxg4Qwdi0Ccv6EeMIXhpfEk2YmKb9t5e0IRXlISWUVilohCwMJlug2KTBjAmF4xOKKzAabZk695OzGL+EmLkcw/qrSrwkHDpZzpV2cnKfflkkQVuSIIGSpLog2hVWarlgOr/L01YA9JswietC85R8xM8uAV7B1ErFF37WAouWk2lXPJOTMn+rbh+1BT6PbJNt0B4AeVr7Ug+gC3SBRZU6c1HJ5NGdN4ZcjHwy1orZf6EDF6Jf8GcrAxEzQrN5u5/yfvd0AUSVst4XXVfMetRnZpntah92EC7K17ER0jk1pycutT1w7RbbnCfMRAuHBy7EaVPKuzaNAgMBAAECggEBAJ4iKCJ9YXo74r8TBSgkRDHN+S5wrtarQsXYUCMNEW9jQ5JGKt+FqicQ/12dPqcqSChdQY07xf5K62hIxE9WQF1Lv3RdcdbBFoQ8Scuqd0UDGFDidbG2I9Dy2GIqX0Sj8x/+j5+qH6VhSL6G6+tAniJYbf2xYUUsE9bU/Ajin//qthRbFYPH5XSKgBd9KU/Y/FAtkhEmbsDfwSwRVkUc8CHccilksojQabwVyiKYyKEtETLXfZGS514b30QJrsGN3y7WKnkWSRw51Rc5441CdJFoMyyls7dHvfBuSDPmclAaRQIhYuSg0Y3dGZz40Pd7Iz1hg+Ajf0kz+GkSFaZ96AkCgYEA/Cb5zou0x9EXjnHcS3OwuQCR//t0ylItDctL6qMBetrDXVJB+wS0nbTXUPVh4KTaWvIEOS6NXat0Ow3RgRFvergN+Shy3TeL+W3MIeD8AfstEVF6J98rj5FmVGl2v1kutgTjpH8v8kae3odbxUaWDqj/YInLUM8cfVWtfuJa4osCgYEArVWQjV3+Iu3k9wi2RQPOaZ6ylQ5jsRkg+t5md5L/dQvDeNSyEZc1E9fmWo5oQeAfwV4hZB5FYH3y+4wFvJVTooiCuz9Uyp3XayJLu/qOSknEHv2JGohXPAeJbLgKU0GPgfLOnsmPwPruTqrUyMHXuY8t80GY164X8lUxBy8pZkcCgYEAjqgmcNrNnrcHUsnMTsvXUfOmpmLHgqfXYZSBEPDEJ5OZMDUXq0LQROFJaD5L7+KUvxtplEhoJnSYP8jjnNgWcCGtlidyRQHmKWobMZeuPBi1OLUWHXS/mmwyrtM0IbH9IXHGsQxcPgACZffCzevPfd/TC/UpmEB059wPWlgJ/10CgYBt8r+dnIiO2X4KYQFVJ8Pv5VV8DUOZW8o6t4YhxSG7ufmFFM3bMKHfc2zP9lMVrjgWbUIbAsSZH2tYuooNBF+n0pWydsqvN44ki/2kQJuvbbk0uzgTl3ZWQqWeS+NoykZgdIcx28MO81zkk6IjsinHr5XDHtH3xZu1AOr3lqfZEwKBgQD4DWYsRgL5vCKB1TChtzpRPAibi59sxno6yzA1EdgXDyVh0ys5rftKoO88q2RyxpdIn3YjAWZYQNYFzgmlaKTDQUn/v/Pkp3MUMxinzN4V2hyGkFOA4HknsmLcgxpEYEqz1vpKEBll/RQSKcZ40gAUB9n+afi4kVHC2IsXbHYoEg==
+  publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqrqeIrCNzTqqx8YOEMHYtAnL+hHjCF4aXxJNmJim/beXtCEV5SEllFYpaIQsDCZboNikwYwJheMTiiswGm2ZOveTsxi/hJi5HMP6q0q8JBw6Wc6VdnJyn35ZJEFbkiCBkqS6INoVVmq5YDq/y9NWAPSbMInrQvOUfMTPLgFewdRKxRd+1gKLlpNpVzyTkzJ/q24ftQU+j2yTbdAeAHla+1IPoAt0gUWVOnNRyeTRnTeGXIx8MtaK2X+hAxeiX/BnKwMRM0Kzebuf8n73dAFElbLeF11XzHrUZ2aZ7WofdhAuytexEdI5NacnLrU9cO0W25wnzEQLhwcuxGlTyrs2jQIDAQAB
+  issuer: com.web3gateway
+  subject: bestproject
+
+contract:
+  chainId: 56
+  vault:
+    contract-address: "0x81A6D21014315ab2C83D8fa5c96a80338EA28642"
+    creatorAddress: "0x73D1F88EA48AFE25F2f7ACA0C043e5D8B52AEF34"
+    primaryType: TokenVoucher
+    version: 1.0
+    domainName: Token-Voucher
+  flare-land-nft-voucher:
+    primaryType: NFTVoucher
+    version: 1.0
+    domainName: Flare-Voucher
+    tokenAddress: "0x7beE7ddeE8A9847a98c01Ed51D19BB4C13534382"
+    creatorAddress: "0x73D1F88EA48AFE25F2f7ACA0C043e5D8B52AEF34"
+  flare-og-nft-voucher:
+    primaryType: NFTVoucher
+    version: 1.0
+    domainName: Flare-Voucher
+    tokenAddress: "0xC70Fe00529Fe5d724F701e4169579BE4431c00de"
+    creatorAddress: "0x73D1F88EA48AFE25F2f7ACA0C043e5D8B52AEF34"
+  privateKey: "AQICAHh9L7/ximmWU2tjRJkNMXkaaHrBSN6fbRwHwJvMqoosEAEeMU1ZIP8pxEZRp+kjH7VPAAAAojCBnwYJKoZIhvcNAQcGoIGRMIGOAgEAMIGIBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDGmomRgKTbruCfqCyAIBEIBbWG9k3zLIvM/bvZITPqs63j/EakNuUclXgEJWTo/2z0FSXSJR46yb2iMf1lewpinaQzK/ObnjPVRcDzO2FRlHDSxtqfznYp4rMM20LKibNB6g9TPkM8inznqtbA=="
+eth-node:
+  bsc: https://bsc-dataseed1.binance.org/
+aws:
+  kms:
+    secretId: 25df7fda-4c45-4762-b3e2-a12db77626bd
+    appKeyId: AKIAXOXMGTUUVXTNUZVO
+    accessKey: 6Qv5jhILo/FX4zB/g89S6urXDeGFMNd5zZEsg5h+
+opensea:
+  url: https://api.opensea.io/v2/listings/collection/flare/all
+  single-url: https://api.opensea.io/v2/orders/%s/seaport/listings?asset_contract_address=%s&token_ids=%slimit=1
+  chain: bsc
+  x-api-key: "a4f4154f8aa34b6488dcba7e5b755c85"
